@@ -15,3 +15,20 @@ D:\Development\Visual studio\Webpage notifier\Webpage notifier\bin\Debug\System.
 D:\Development\Visual studio\Webpage notifier\Webpage notifier\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 D:\Development\Visual studio\Webpage notifier\Webpage notifier\obj\Debug\Webpage notifier.exe.config
 D:\Development\Visual studio\Webpage notifier\Webpage notifier\obj\Debug\Webpage notifier.csproj.CopyComplete
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Debug\Webpage notifier.csprojAssemblyReference.cache
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Debug\Webpage notifier.exe.config
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Debug\Webpage notifier.csproj.CoreCompileInputs.cache
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Debug\Webpage notifier.exe
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Debug\Webpage notifier.pdb
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\Webpage notifier.exe.config
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\Webpage notifier.exe
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\Webpage notifier.pdb
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\System.Memory.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\System.Text.Json.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\System.Numerics.Vectors.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\System.Buffers.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\System.Text.Encodings.Web.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Debug\Webpage notifier.csproj.CopyComplete

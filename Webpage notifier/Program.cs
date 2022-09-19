@@ -6,49 +6,93 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
 using System.Text.Json;
-
+using System.IO;
 
 namespace Webpage_notifier
 {
     class Program
     {
+        static string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        static string localWebpageNotifierPath = localPath + "\\Webpage notifier";
+        static string settingsJsonPath = localWebpageNotifierPath + "\\Settings.json";
+        static string exampleSettingsJsonPath = localWebpageNotifierPath + "\\Settings_Example.json";
+
         static void Main(string[] args)
         {
+            Directory.CreateDirectory(localWebpageNotifierPath);
 
+            WebpageSearch webpageSearch;
 
-            var webpageSearchJob1 = new WebpageSearchJob
+            if (File.Exists(settingsJsonPath))
             {
-                keywords = new List<string> { "keyword1-job1", "keyword2-job1" },
-                urls = new List<string> { "url1-job1", "url2-job1" }
-            };
-            var webpageSearchJob2 = new WebpageSearchJob
+                string jsonSettingsText = File.ReadAllText(settingsJsonPath);
+
+                try
+                {
+                    webpageSearch = JsonSerializer.Deserialize<WebpageSearch>(jsonSettingsText);
+                }
+                catch (Exception ex)
+                {
+                    ShowMessage("Reading JSON settings failed with error: '" + ex.InnerException + "'. Please check if the settings file is formatted correctly.", MessageBoxIcon.Error);
+
+                    return;
+                }
+
+            }
+            else
             {
-                keywords = new List<string> { "keyword1-job2", "keyword2-job2" },
-                urls = new List<string> { "url1-job2", "url2-job2" }
-            };
+                ShowMessage("Settings Json file not found: '" + settingsJsonPath + "'. Please, configure it and try again. See the example settings file in: '" + exampleSettingsJsonPath + "'.", MessageBoxIcon.Warning);
 
-            var webpageSearch1 = new WebpageSearch
-            {
-                WebpageSearchJobs = new List<WebpageSearchJob> { webpageSearchJob1, webpageSearchJob2 }
-            };
+                if (!File.Exists(exampleSettingsJsonPath))
+                {
+                    GenerateExampleJson();
+                }
 
-            string jsonString = JsonSerializer.Serialize(webpageSearch1);
-
-
-
-
-            // get contents of specified web pages
-            //string pageHtml = GetHtml("www.google.com");
-            string pageHtml = GetHtml("https://www.epsdistribucija.rs/Nis_Dan_3_Iskljucenja.htm");
-            if(pageHtml == null)
-            {
-                // continue;
+                return;
             }
 
-            // search for specified keywords
-            // notify if found
+            try
+            {
+                ProcessWebpageSearch(webpageSearch);
+            }
+            catch (Exception ex)
+            {
+                ShowMessage("Processing webpage search failed with error: '" + ex.InnerException + "'.", MessageBoxIcon.Error);
 
-            
+                return;
+            }           
+
+        }
+
+        public static void ProcessWebpageSearch(WebpageSearch webpageSearch)
+        {
+            foreach (WebpageSearchJob webpageSearchJob in webpageSearch.WebpageSearchJobs)
+            {
+                foreach (string url in webpageSearchJob.urls)
+                {
+
+                    // get contents for the web page
+                    string pageHtml = GetHtml(url);
+                    if (pageHtml == null)
+                    {
+                        ShowMessage("Couldn't get page body from url: " + url);
+
+                        continue;
+                    }
+
+                    // search for specified keywords
+                    foreach(string keyword in webpageSearchJob.keywords)
+                    {
+                        if (pageHtml.Contains(keyword))
+                        {
+                            // notify if found
+                            ShowMessage("Keyword: '" + keyword + "' found in url: '" + url + "'.");
+                        }
+                    }
+
+                    
+                }
+            }
 
         }
 
@@ -79,7 +123,7 @@ namespace Webpage_notifier
             }
             catch (Exception ex)
             {
-                ShowMessage("Getting HTML for url '" + url + "' failed with error: '" + ex.InnerException + "'.", "Error");
+                ShowMessage("Getting HTML for url '" + url + "' failed with error: '" + ex.InnerException + "'.", MessageBoxIcon.Error);
 
                 return null;
             }
@@ -89,21 +133,33 @@ namespace Webpage_notifier
         /// Display a message in a messagebox.
         /// </summary>
         /// <param name="message">The message text.</param>
-        /// <param name="type">Message type. Options: "Info", "Error".</param>
-        private static void ShowMessage(string message, string type = "Info")
+        private static void ShowMessage(string message, MessageBoxIcon messageType = MessageBoxIcon.Information)
         {
-            switch (type.ToLower())
+            MessageBox.Show(message, "Webpage notifier", MessageBoxButtons.OK, messageType);
+        }
+
+        private static void GenerateExampleJson()
+        {
+
+            var webpageSearchJobExample1 = new WebpageSearchJob
             {
-                case "info":
-                    MessageBox.Show(message, "Webpage notifier", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break;
-                case "error":
-                    MessageBox.Show(message, "Webpage notifier", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                default:
-                    MessageBox.Show(message, "Webpage notifier", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break;
-            }
+                keywords = new List<string> { "keyword1-job1", "keyword2-job1" },
+                urls = new List<string> { "url1-job1", "url2-job1" }
+            };
+            var webpageSearchJobExample2 = new WebpageSearchJob
+            {
+                keywords = new List<string> { "keyword1-job2", "keyword2-job2" },
+                urls = new List<string> { "url1-job2", "url2-job2" }
+            };
+
+            var webpageSearchExample = new WebpageSearch
+            {
+                WebpageSearchJobs = new List<WebpageSearchJob> { webpageSearchJobExample1, webpageSearchJobExample2 }
+            };
+
+            string exampleJsonString = JsonSerializer.Serialize(webpageSearchExample);
+
+            File.WriteAllText(exampleSettingsJsonPath, exampleJsonString);
         }
 
         public class WebpageSearch
