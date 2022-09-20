@@ -20,8 +20,15 @@ namespace Webpage_notifier
 
         static void Main(string[] args)
         {
+            // initialize
+
             Directory.CreateDirectory(localWebpageNotifierPath);
             File.Create(latestLogPath).Close();
+
+            if (!File.Exists(exampleSettingsJsonPath))
+            {
+                GenerateExampleJson();
+            }
 
             WebpageSearch webpageSearch;
 
@@ -45,11 +52,6 @@ namespace Webpage_notifier
             else
             {
                 ShowMessage("Settings Json file not found: '" + settingsJsonPath + "'. Please, configure it and try again. See the example settings file in: '" + exampleSettingsJsonPath + "'.", MessageBoxIcon.Warning);
-
-                if (!File.Exists(exampleSettingsJsonPath))
-                {
-                    GenerateExampleJson();
-                }
 
                 return;
             }
