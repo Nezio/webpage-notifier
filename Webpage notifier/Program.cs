@@ -14,15 +14,18 @@ namespace Webpage_notifier
     {
         static string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         static string localWebpageNotifierPath = localPath + "\\Webpage notifier";
-        static string settingsJsonPath = localWebpageNotifierPath + "\\Settings.json";
-        static string exampleSettingsJsonPath = localWebpageNotifierPath + "\\Settings_Example.json";
+        static string settingsJsonPath = localWebpageNotifierPath + "\\settings.json";
+        static string exampleSettingsJsonPath = localWebpageNotifierPath + "\\settings_example.json";
+        static string latestLogPath = localWebpageNotifierPath + "\\log_latest.log";
 
         static void Main(string[] args)
         {
             Directory.CreateDirectory(localWebpageNotifierPath);
+            File.Create(latestLogPath).Close();
 
             WebpageSearch webpageSearch;
 
+            // read settings from Json
             if (File.Exists(settingsJsonPath))
             {
                 string jsonSettingsText = File.ReadAllText(settingsJsonPath);
@@ -51,13 +54,14 @@ namespace Webpage_notifier
                 return;
             }
 
+            // do the search
             try
             {
                 ProcessWebpageSearch(webpageSearch);
             }
             catch (Exception ex)
             {
-                ShowMessage("Processing webpage search failed with error: '" + ex.InnerException + "'.", MessageBoxIcon.Error);
+                ShowMessage("Processing webpage search failed with error: '" + ex.Message + "'.", MessageBoxIcon.Error);
 
                 return;
             }           
@@ -75,7 +79,10 @@ namespace Webpage_notifier
                     string pageHtml = GetHtml(url);
                     if (pageHtml == null)
                     {
-                        ShowMessage("Couldn't get page body from url: " + url);
+                        string message = "Couldn't get page body from url: " + url;
+
+                        ShowMessage(message);
+                        Log(message);
 
                         continue;
                     }
@@ -86,11 +93,18 @@ namespace Webpage_notifier
                         if (pageHtml.Contains(keyword))
                         {
                             // notify if found
-                            ShowMessage("Keyword: '" + keyword + "' found in url: '" + url + "'.");
+                            string message = "Keyword: '" + keyword + "' found in url: '" + url + "'.";
+                            
+                            ShowMessage(message);
+                            Log(message);
+                        }
+                        else
+                        {
+                            string message = "Keyword: '" + keyword + "' not found in url: '" + url + "'.";
+
+                            Log(message);
                         }
                     }
-
-                    
                 }
             }
 
@@ -160,6 +174,11 @@ namespace Webpage_notifier
             string exampleJsonString = JsonSerializer.Serialize(webpageSearchExample);
 
             File.WriteAllText(exampleSettingsJsonPath, exampleJsonString);
+        }
+
+        private static void Log(string text)
+        {
+            File.AppendAllText(latestLogPath, text + "\n");
         }
 
         public class WebpageSearch

@@ -1,0 +1,17 @@
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\Webpage notifier.exe.config
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\Webpage notifier.exe
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\Webpage notifier.pdb
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Memory.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Text.Json.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Numerics.Vectors.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Buffers.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Text.Encodings.Web.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Threading.Tasks.Extensions.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.csprojAssemblyReference.cache
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.exe.config
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.csproj.CoreCompileInputs.cache
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.csproj.CopyComplete
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.exe
+D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.pdb

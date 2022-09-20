@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B31257A3-B76B-4828-8062-2C9C0B9B1D81}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Webpage_notifier</RootNamespace>
     <AssemblyName>Webpage notifier</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
