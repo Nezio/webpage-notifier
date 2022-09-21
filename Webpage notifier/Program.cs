@@ -92,7 +92,7 @@ namespace Webpage_notifier
                     // search for specified keywords
                     foreach(string keyword in webpageSearchJob.keywords)
                     {
-                        if (pageHtml.Contains(keyword))
+                        if (pageHtml.CaseInsensitiveContains(keyword))
                         {
                             // notify if found
                             string message = "Keyword: '" + keyword + "' found in url: '" + url + "'.";
@@ -195,4 +195,14 @@ namespace Webpage_notifier
         }
 
     }
+
+    public static class Extensions
+    {
+        public static bool CaseInsensitiveContains(this string text, string value,
+            StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase)
+        {
+            return text.IndexOf(value, stringComparison) >= 0;
+        }
+    }
+
 }
