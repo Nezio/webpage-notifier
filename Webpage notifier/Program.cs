@@ -78,15 +78,31 @@ namespace Webpage_notifier
                 {
 
                     // get contents for the web page
-                    string pageHtml = GetHtml(url);
+                    string pageHtml = null;
+                    int attemptCount = 0;
+                    while (pageHtml == null && attemptCount < 3)
+                    {
+                        try
+                        {
+                            pageHtml = GetHtml(url);
+                        }
+                        catch (Exception ex)
+                        {
+                            attemptCount++;
+                        }
+                    }
+                    
+
                     if (pageHtml == null)
                     {
-                        string message = "Couldn't get page body from url: " + url;
+                        string message = "Couldn't get page body after 3 retries from url: " + url + ".\n" +
+                            "The url could be inaccessible. Check the log in: " + latestLogPath + ".\n" +
+                            "Skipping this search job and continuing with the next one.";
 
                         ShowMessage(message);
                         Log(message);
 
-                        continue;
+                        break;
                     }
 
                     // search for specified keywords
@@ -139,9 +155,9 @@ namespace Webpage_notifier
             }
             catch (Exception ex)
             {
-                ShowMessage("Getting HTML for url '" + url + "' failed with error: '" + ex.InnerException + "'.", MessageBoxIcon.Error);
+                Log("Getting HTML for url '" + url + "' failed with error: '" + ex.InnerException + "'.");
 
-                return null;
+                throw ex;
             }
         }
 

@@ -9,7 +9,6 @@ D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\
 D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Text.Encodings.Web.dll
 D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\System.Threading.Tasks.Extensions.dll
 D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
-D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.csprojAssemblyReference.cache
 D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.exe.config
 D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.csproj.CoreCompileInputs.cache
 D:\Development\Visual studio\Webpage notifier\webpage-notifier\Webpage notifier\obj\Release\Webpage notifier.csproj.CopyComplete
